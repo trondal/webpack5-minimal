@@ -2,12 +2,14 @@
   "compilerOptions": {
     "outDir": "./build/",
     "noImplicitAny": true,
+    "lib": ["DOM", "ESNext"],
     "sourceMap": true,
     "module": "esnext",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   }
 }
