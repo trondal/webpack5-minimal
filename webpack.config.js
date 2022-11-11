@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -8,19 +9,33 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: './dist'
+    static: './build'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        include: /src/
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        type: 'asset/resource'
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Development'
+      template: './public/index.html'
     })
+    // new CopyPlugin({ patterns: [{ from: './public/favicon.ico', to: '.' }] })
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     clean: true,
     pathinfo: false
   }
