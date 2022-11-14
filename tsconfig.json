@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
     "noImplicitAny": true,
     "lib": ["DOM", "ESNext"],
     "sourceMap": true,

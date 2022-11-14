@@ -11,10 +11,10 @@ const config: webpack.Configuration = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: './build'
+    static: path.resolve(__dirname, 'dist'),
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
     assetModuleFilename: '[name][ext]', // keep img original name
     clean: true,
