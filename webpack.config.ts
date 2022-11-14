@@ -1,8 +1,10 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+import path from 'path';
+import * as webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import 'webpack-dev-server';
 
-module.exports = {
+const config: webpack.Configuration = {
   mode: 'development',
   entry: {
     index: './src/index.ts'
@@ -12,7 +14,7 @@ module.exports = {
     static: './build'
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   module: {
     rules: [
@@ -40,9 +42,12 @@ module.exports = {
     })
   ],
   output: {
-    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'build'),
+    filename: '[name].bundle.js',
+    assetModuleFilename: '[name][ext]', // keep img original name
     clean: true,
     pathinfo: false
   }
-};
+}
+
+export default config;
