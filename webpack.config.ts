@@ -13,6 +13,13 @@ const config: webpack.Configuration = {
   devServer: {
     static: './build'
   },
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].bundle.js',
+    assetModuleFilename: '[name][ext]', // keep img original name
+    clean: true,
+    pathinfo: false
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
@@ -40,14 +47,7 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
-  ],
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: '[name].bundle.js',
-    assetModuleFilename: '[name][ext]', // keep img original name
-    clean: true,
-    pathinfo: false
-  }
+  ]
 }
 
 export default config;
